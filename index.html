@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Search API</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        .container h1 {
+            font-size: 24px;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .error {
+            color: #d9534f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Drug Search</h1>
+        <form id="search-form">
+            <div class="input-group">
+                <label for="query">Enter your query:</label>
+                <input type="text" id="query" name="query" placeholder="e.g., What is ibuprofen used for?" required>
+            </div>
+            <button type="submit" class="button">Search</button>
+        </form>
+        <div class="result" id="result" style="display: none;">
+            <h3>Response:</h3>
+            <p id="response-text"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("search-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const query = document.getElementById("query").value;
+            const resultDiv = document.getElementById("result");
+            const responseText = document.getElementById("response-text");
+
+            resultDiv.style.display = "none";
+            responseText.textContent = "";
+
+            try {
+                const response = await fetch("http://localhost:8000/search/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                responseText.textContent = data.answer || "No response found.";
+                resultDiv.style.display = "block";
+            } catch (error) {
+                responseText.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                resultDiv.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
