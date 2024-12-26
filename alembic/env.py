@@ -6,8 +6,8 @@ from alembic import context
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
-from app.model import Base 
-from app.config import settings 
+from app.models.model import Base 
+from app.config.config import settings 
 config = context.config
 
 if config.config_file_name is not None:

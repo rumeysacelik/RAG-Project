@@ -1,23 +1,19 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from api import router
+from routes.api import router
+# from routes.initial import initRouter
+from config.middleware import setup_middlewares
+from wsgi import create_app
 
-app = FastAPI()
+# Uygulama oluşturulur
+app = create_app()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
+# app = FastAPI()
+
+setup_middlewares(app)
 
 app.include_router(router)
-
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the Drug Search API."}
+# app.include_router(initRouter)
 
 if __name__ == "__main__":
     import uvicorn

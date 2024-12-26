@@ -1,8 +1,8 @@
 from fastapi import FastAPI, APIRouter, HTTPException
 from pydantic import BaseModel
-from services import setup_retrieval_chain
-from model import RequestLog
-from db import SessionLocal
+from services.retrieval_chain import setup_retrieval_chain
+from models.model import RequestLog
+from config.db import SessionLocal
 
 import datetime
 import json
@@ -57,6 +57,11 @@ async def search_articles(request: QueryRequest):
     except Exception as e:
         logger.error(f"Error during query execution: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/")
+async def root():
+    return {"message": "Welcome to the Drug Search API."}
+
 
 app.include_router(router)
 
