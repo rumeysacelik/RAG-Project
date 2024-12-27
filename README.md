@@ -26,7 +26,7 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot designed 
             <p>Study tool for pharmaceutical knowledge and quick reference for medication properties and studies.</p>
         </td>
         <td style="text-align:center;">
-            <img src="app/static/img/usecase3.png" width="500" alt="Researchers">
+            <img src="app/static/img/usecase3.png" width="700" alt="Researchers">
             <p><strong>Researchers</strong></p>
             <p>You can list the last 10 records by default using the /history endpoint.</p>
         </td>
