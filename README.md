@@ -6,6 +6,14 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot designed 
 
 ---
 
+## Project Demo
+
+You can watch the project demo through the following link:
+
+[Click here to watch the full demo](https://youtu.be/7iRSQH0HmsY)
+
+---
+
 ## Use Cases
 
 - **Medical Professionals**: Quick reference for drug information and potential interactions.
@@ -177,11 +185,13 @@ The server will be available at `http://localhost:8000`.
     "answer": "Ibuprofen is listed in the WHO Model List of Essential Medicines (18th edition, April 2013) under the category of Non-opioids and non-steroidal anti-inflammatory medicines (NSAIMs). It is available in the following forms: Oral liquid: 200 mg/5 ml - Tablet: 200 mg; 400 mg; 600 mg It is noted that ibuprofen is not recommended for children less than 3 months old."
 }
 ```
-<!-- 
-### Logs Endpoint
-- **URL:** `/logs`
+---
+
+## Chat History Endpoint
+
+- **URL:** `/history/`
 - **Method:** `GET`
-- **Description:** Retrieves all request logs stored in the database. -->
+- **Description:** Retrieves the last 10  request logs stored in the database. 
 
 ---
 
