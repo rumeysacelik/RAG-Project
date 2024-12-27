@@ -21,7 +21,7 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot designed 
 <table style="width:100%; text-align:center;">
     <tr>
         <td style="text-align:center;">
-            <img src="app/static/img/usecase1.png" width="500" alt="Medical Students">
+            <img src="app/static/img/usecase1.png" width="350" alt="Medical Students">
             <p><strong>Medical Students & Researchers</strong></p>
             <p>Study tool for pharmaceutical knowledge and quick reference for medication properties and studies.</p>
         </td>
@@ -44,7 +44,7 @@ The `index.html` file provides a user-friendly interface to interact with the ba
 <table style="width:100%; text-align:center;">
     <tr>
         <td style="text-align:center;">
-            <img src="app/static/img/usecase4.png" width="300" alt="Medical Students">
+            <img src="app/static/img/usecase4.png" width="400" alt="Medical Students">
         </td>
         <td style="text-align:center;">
             <img src="app/static/img/usecase5.png" width="400" alt="Researchers">
