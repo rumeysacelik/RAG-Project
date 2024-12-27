@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import api
+from routes import search
+from routes.history import router as history_router
+
+
 
 def create_app() -> FastAPI:
 
@@ -14,7 +17,9 @@ def create_app() -> FastAPI:
 
 
 def init_routers(app: FastAPI) -> None:
-    app.include_router(api.router)  
+    app.include_router(search.router)  
+    app.include_router(history_router)  # History router'ı dahil et
+
 
 
 def configure_middlewares(app: FastAPI) -> None:

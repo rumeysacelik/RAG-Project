@@ -3,95 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drug Search API</title>
+    <title>Drug GPT</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #eef2f7;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            padding: 20px;
+            color: #2d3748;
         }
+
         .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
         }
-        .container h1 {
-            font-size: 24px;
-            color: #007bff;
+
+        .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
         }
-        .input-group {
-            margin-bottom: 15px;
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
+
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
         }
-        .input-group input {
+
+        .search-box {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 1rem 1.5rem;
+            padding-left: 3rem;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: #fff;
         }
-        .button {
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-size: 1.2rem;
+        }
+
+        .search-button {
             width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
+            padding: 1rem;
+            background: linear-gradient(135deg, #4299e1 0%, #2b6cb0 100%);
+            color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: none;
             letter-spacing: 0.5px;
         }
-        .button:hover {
-            background-color: #0056b3;
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
         }
+
+        .search-button:active {
+            transform: translateY(0);
+        }
+
         .result {
-            margin-top: 20px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 14px;
+            margin-top: 2rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: none;
         }
+
         .result h3 {
-            margin-top: 0;
-            color: #007bff;
+            color: #2b6cb0;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
+
+        .result p {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .loading i {
+            color: #4299e1;
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+        }
+
+        /* History Section Styles */
+        .history-section {
+            margin-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .history-header h2 {
+            color: #2b6cb0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .history-toggle {
+            background: #edf2f7;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .history-toggle:hover {
+            background: #e2e8f0;
+        }
+
+        .history-list {
+            display: none;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .history-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .history-query {
+            font-weight: 500;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .history-response {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .history-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .error {
-            color: #d9534f;
-            font-weight: bold;
+            color: #e53e3e;
+            background: #fff5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #feb2b2;
+            margin-top: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Drug Search</h1>
+        <div class="header">
+            <h1>Drug GPT</h1>
+            <p>Get reliable information about medications and treatments</p>
+        </div>
+        
         <form id="search-form">
-            <div class="input-group">
-                <label for="query">Enter your query:</label>
-                <input type="text" id="query" name="query" placeholder="e.g., What is ibuprofen used for?" required>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input 
+                    type="text" 
+                    id="query" 
+                    name="query" 
+                    placeholder="Enter your medical question..." 
+                    required
+                    autocomplete="off"
+                >
             </div>
-            <button type="submit" class="button">Search</button>
+            
+            <button type="submit" class="search-button">
+                <i class="fas fa-microscope"></i> Ask Drug GPT
+            </button>
         </form>
-        <div class="result" id="result" style="display: none;">
-            <h3>Response:</h3>
+
+        <div class="loading" id="loading">
+            <i class="fas fa-circle-notch"></i>
+        </div>
+
+        <div class="result" id="result">
+            <h3>Medical Information</h3>
             <p id="response-text"></p>
+        </div>
+
+        <div class="history-section">
+            <div class="history-header">
+                <h2>Recent Searches</h2>
+                <button class="history-toggle" id="history-toggle">
+                    <i class="fas fa-history"></i>
+                    View History
+                </button>
+            </div>
+            <div class="history-list" id="history-list">
+            </div>
         </div>
     </div>
 
@@ -102,8 +302,10 @@
             const query = document.getElementById("query").value;
             const resultDiv = document.getElementById("result");
             const responseText = document.getElementById("response-text");
+            const loadingDiv = document.getElementById("loading");
 
             resultDiv.style.display = "none";
+            loadingDiv.style.display = "block";
             responseText.textContent = "";
 
             try {
@@ -116,17 +318,88 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Error: ${response.status}`);
+                    throw new Error(`Request failed with status ${response.status}`);
                 }
 
                 const data = await response.json();
-                responseText.textContent = data.answer || "No response found.";
+                responseText.textContent = data.answer || "No information found for your query.";
                 resultDiv.style.display = "block";
+                
+                fetchHistory();
             } catch (error) {
-                responseText.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                responseText.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        ${error.message}
+                    </div>`;
                 resultDiv.style.display = "block";
+            } finally {
+                loadingDiv.style.display = "none";
             }
         });
+
+        const historyToggle = document.getElementById("history-toggle");
+        const historyList = document.getElementById("history-list");
+        let historyVisible = false;
+
+        historyToggle.addEventListener("click", () => {
+            historyVisible = !historyVisible;
+            historyList.style.display = historyVisible ? "flex" : "none";
+            historyToggle.innerHTML = historyVisible ? 
+                '<i class="fas fa-times"></i> Hide History' : 
+                '<i class="fas fa-history"></i> View History';
+            
+            if (historyVisible) {
+                fetchHistory();
+            }
+        });
+
+        async function fetchHistory() {
+            try {
+                const response = await fetch("http://localhost:8000/history/");
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch history`);
+                }
+
+                const data = await response.json();
+                const historyList = document.getElementById("history-list");
+                historyList.innerHTML = ""; // Clear existing history
+
+                data.history.forEach(item => {
+                    const historyItem = document.createElement("div");
+                    historyItem.className = "history-item";
+                    
+                    const date = new Date(item.created_date);
+                    const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                    
+                    historyItem.innerHTML = `
+                        <div class="history-query">
+                            <i class="fas fa-search"></i> ${item.request.query}
+                        </div>
+                        <div class="history-response">${item.response.answer}</div>
+                        <div class="history-meta">
+                            <span><i class="fas fa-clock"></i> ${formattedDate}</span>
+                            <span><i class="fas fa-stopwatch"></i> ${item.duration.toFixed(2)}s</span>
+                        </div>
+                    `;
+                    
+                    historyItem.addEventListener("click", () => {
+                        document.getElementById("query").value = item.request.query;
+                        document.getElementById("search-form").dispatchEvent(new Event("submit"));
+                    });
+                    
+                    historyList.appendChild(historyItem);
+                });
+            } catch (error) {
+                console.error("Error fetching history:", error);
+                const historyList = document.getElementById("history-list");
+                historyList.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Failed to load search history
+                    </div>`;
+            }
+        }
     </script>
 </body>
 </html>

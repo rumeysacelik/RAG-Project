@@ -6,6 +6,24 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot designed 
 
 ---
 
+## Use Cases
+
+- **Medical Professionals**: Quick reference for drug information and potential interactions.
+- **Pharmacists**: Verify medication details, dosage information, and combinations.
+- **Medical Students**: A study tool to gain pharmaceutical knowledge efficiently.
+- **Healthcare Administrators**: Easy access to medication information for accurate documentation.
+- **Researchers**: Quick reference for medication properties and relevant studies.
+
+---
+
+### Medical Students & Researchers
+![Medical Students](app/static/img/usecase1.png) ![Researchers](app/static/img/usecase1.png)
+
+**Medical Students**: Study tool for pharmaceutical knowledge.  
+**Researchers**: Quick reference for medication properties and studies.
+
+---
+
 ## Features
 
 - **Retrieve and Generate Responses:** Leverages LangChain to retrieve relevant document chunks and generate human-like answers.
@@ -70,7 +88,7 @@ MILVUS_URI=http://localhost:19530
 FILEPATH=FILEPATH
 CHUNK_SIZE=1000
 CHUNK_OVERLAP=200
-COLLECTION_NAME=drug_collection2
+COLLECTION_NAME=collection_name
 ```
 
 ### 5. Set Up PostgreSQL

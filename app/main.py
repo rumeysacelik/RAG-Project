@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes.api import router
+from routes.search import router
 from config.middleware import setup_middlewares
 from wsgi import create_app
 
