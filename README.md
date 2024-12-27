@@ -67,7 +67,7 @@ Create a `.env` file in the root directory and define the following:
 DATABASE_URL=postgresql+psycopg2://<username>:<password>@localhost:5432/<db_name>
 OPENAI_API_KEY=<your_openai_api_key>
 MILVUS_URI=http://localhost:19530
-FILEPATH=druglistt.pdf
+FILEPATH=FILEPATH
 CHUNK_SIZE=1000
 CHUNK_OVERLAP=200
 COLLECTION_NAME=drug_collection2
@@ -118,21 +118,21 @@ The server will be available at `http://localhost:8000`.
 - **Payload:**
 ```json
 {
-    "query": "What is fluconazole?"
+    "query": "What is Ibuprofen?"
 }
 ```
 - **Response:**
 ```json
 {
-    "query": "What is fluconazole?",
+    "query": "What is Ibuprofen?",
     "answer": "Ibuprofen is listed in the WHO Model List of Essential Medicines (18th edition, April 2013) under the category of Non-opioids and non-steroidal anti-inflammatory medicines (NSAIMs). It is available in the following forms: Oral liquid: 200 mg/5 ml - Tablet: 200 mg; 400 mg; 600 mg It is noted that ibuprofen is not recommended for children less than 3 months old."
 }
 ```
-
+<!-- 
 ### Logs Endpoint
 - **URL:** `/logs`
 - **Method:** `GET`
-- **Description:** Retrieves all request logs stored in the database.
+- **Description:** Retrieves all request logs stored in the database. -->
 
 ---
 
