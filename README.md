@@ -16,11 +16,42 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot designed 
 
 ---
 
-### Medical Students & Researchers
-![Medical Students](app/static/img/usecase1.png) ![Researchers](app/static/img/usecase1.png)
+# Medical Students & Researchers
 
-**Medical Students**: Study tool for pharmaceutical knowledge.  
-**Researchers**: Quick reference for medication properties and studies.
+<table style="width:100%; text-align:center;">
+    <tr>
+        <td style="text-align:center;">
+            <img src="app/static/img/usecase1.png" width="500" alt="Medical Students">
+            <p><strong>Medical Students & Researchers</strong></p>
+            <p>Study tool for pharmaceutical knowledge and quick reference for medication properties and studies.</p>
+        </td>
+        <td style="text-align:center;">
+            <img src="app/static/img/usecase3.png" width="500" alt="Researchers">
+            <p><strong>Researchers</strong></p>
+            <p>You can list the last 10 records by default using the /history endpoint.</p>
+        </td>
+    </tr>
+
+</table>
+
+### Frontend Interface 🌐
+
+The `index.html` file provides a user-friendly interface to interact with the backend services. You can customize it as needed, update the API endpoint with the port where your services are running, and start using it seamlessly.
+
+---
+
+
+<table style="width:100%; text-align:center;">
+    <tr>
+        <td style="text-align:center;">
+            <img src="app/static/img/usecase4.png" width="300" alt="Medical Students">
+        </td>
+        <td style="text-align:center;">
+            <img src="app/static/img/usecase5.png" width="400" alt="Researchers">
+        </td>
+    </tr>
+
+</table>
 
 ---
 
