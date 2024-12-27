@@ -125,7 +125,7 @@ The server will be available at `http://localhost:8000`.
 ```json
 {
     "query": "What is fluconazole?",
-    "answer": "Fluconazole is an antifungal medication."
+    "answer": "Ibuprofen is listed in the WHO Model List of Essential Medicines (18th edition, April 2013) under the category of Non-opioids and non-steroidal anti-inflammatory medicines (NSAIMs). It is available in the following forms: Oral liquid: 200 mg/5 ml - Tablet: 200 mg; 400 mg; 600 mg It is noted that ibuprofen is not recommended for children less than 3 months old."
 }
 ```
 
@@ -175,7 +175,3 @@ The server will be available at `http://localhost:8000`.
 3. **Database Migrations Fail:**
    - Check the `alembic.ini` configuration and ensure PostgreSQL is running.
 
----
-
-## License
-This project is licensed under the MIT License.
