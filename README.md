@@ -46,7 +46,7 @@ Ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-rumeysacelik/RAG-Project.git
+git clone https://github.com/rumeysacelik/RAG-Project.git
 cd RAG-Project
 ```
 
