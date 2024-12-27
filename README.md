@@ -46,8 +46,8 @@ Ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repo/RAG-ChatBot-Project.git
-cd RAG-ChatBot-Project
+git clone https://github.com/your-rumeysacelik/RAG-Project.git
+cd RAG-Project
 ```
 
 ### 2. Create a Python Virtual Environment
