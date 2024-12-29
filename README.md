@@ -187,7 +187,7 @@ The server will be available at `http://localhost:8000`.
 ```
 ---
 
-## Chat History Endpoint
+### Chat History Endpoint
 
 - **URL:** `/history/`
 - **Method:** `GET`
