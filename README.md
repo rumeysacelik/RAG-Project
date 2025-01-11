@@ -4,15 +4,6 @@
 
 This project implements a Retrieval-Augmented Generation (RAG) chatbot designed to answer queries based on a specific dataset. It uses FastAPI as the web framework, PostgreSQL as the relational database, and Milvus as the vector database for efficient similarity searches. The application is containerized using Docker and includes comprehensive database migrations managed by Alembic.
 
----
-
-## Project Demo
-
-You can watch the project demo through the following link:
-
-[Click here to watch the full demo](https://youtu.be/7iRSQH0HmsY)
-
----
 
 ## Use Cases
 
